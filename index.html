@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Easy Profile-Dilna</title>
+
+    <!-- Google Font & Icons (optional) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg: #5a09c4;
+        --card: #3e0885;
+        --card-2: #ffffff;
+        --muted: #e6ebf7;
+        --text: #eaf0ff;
+        --accent: #71a3ff;
+        --radius: 18px;
+        --shadow: 0 10px 30px rgba(6, 16, 51, 0.25);
+        --gap: 24px;
+        --maxw: 1080px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: ;
+      }
+      body {
+        margin: 0;
+        font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto,
+          sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 56vh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 64px 16px 120px;
+        background: linear-gradient(
+            to bottom,
+            rgba(10, 22, 60, 0.35),
+            rgba(10, 22, 60, 0.75)
+          ),
+          url("bg.jpg") center/cover no-repeat fixed;
+      }
+      .girl-pic {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 6px solid rgba(255, 255, 255, 0.6);
+        box-shadow: var(--shadow);
+        object-fit: cover;
+      }
+      .title {
+        margin: 18px 0 4px;
+        font-size: 28px;
+        font-weight: 700;
+        color: #cfe1ff;
+      }
+      .subtitle {
+        margin: 0;
+        font-weight: 400;
+        opacity: 0.95;
+      }
+
+      /* Layout grid */
+      .wrap {
+        max-width: var(--maxw);
+        margin: -84px auto 80px;
+        padding: 0 16px;
+        display: grid;
+        gap: var(--gap);
+        grid-template-columns: repeat(12, 1fr);
+      }
+
+      /* Card base */
+      .card {
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 24px;
+        backdrop-filter: blur(6px);
+      }
+      .card.light {
+        background: var(--card-2);
+        color: #1d2a4d;
+      }
+      .card.dark {
+        background: #2d5fcb; /* solid */
+        color: #f7f9ff;
+      }
+
+      /* Blocks placement (desktop) */
+      .about {
+        grid-column: span 6;
+      }
+      .skills {
+        grid-column: span 6;
+      }
+      .education {
+        grid-column: span 8;
+      }
+      .languages {
+        grid-column: span 4;
+      }
+      .contact {
+        grid-column: span 4;
+      }
+      .experience {
+        grid-column: span 8;
+      }
+
+      /* Card headings */
+      h3 {
+        margin: 0 0 14px;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+      .muted {
+        color: #e9eeff;
+        opacity: 0.9;
+      }
+      .light .muted {
+        color: #5c6b92;
+        opacity: 1;
+      }
+
+      /* Skills bar */
+      .skill {
+        margin: 12px 0;
+      }
+      .skill label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 6px;
+        opacity: 0.95;
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.22);
+        overflow: hidden;
+      }
+      .bar > span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, #9ec2ff, #5fa0ff);
+        width: 0%;
+        transition: width 0.9s ease;
+      }
+      /* animate when in view (simple) */
+      .skills:hover .bar > span {
+        width: var(--w, 70%);
+      }
+
+      /* Lists */
+      ul.clean {
+        margin: 0;
+        padding-left: 18px;
+      }
+      ul.clean li {
+        margin: 8px 0;
+      }
+
+      /* Contact */
+      .contact .row {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        align-items: start;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .contact a {
+        color: #1b3f9f;
+        text-decoration: none;
+      }
+      .contact a:hover {
+        text-decoration: underline;
+      }
+
+      /* Experience */
+      .xp-item {
+        margin: 14px 0;
+      }
+      .xp-item h4 {
+        margin: 0 0 4px;
+        font-size: 16px;
+      }
+      .xp-item .place {
+        font-weight: 600;
+      }
+      .xp-item .range {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        color: #b8c9ff;
+        padding: 30px 0 60px;
+      }
+      .social a {
+        display: inline-grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #234aa8;
+        color: white;
+        margin: 0 6px;
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        font-size: 15px;
+      }
+
+      /* Responsive */
+      @media (max-width: 960px) {
+        .education {
+          grid-column: span 7;
+        }
+        .experience {
+          grid-column: span 12;
+        }
+      }
+      @media (max-width: 820px) {
+        .about,
+        .skills,
+        .education,
+        .languages,
+        .contact,
+        .experience {
+          grid-column: span 12;
+        }
+        .wrap {
+          margin-top: -72px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero -->
+    <header class="hero" role="banner" aria-label="Profile header">
+      <img
+        class="girl-pic"
+        src="./image/dilna.jpg"
+        alt="Profile picture of dilna"
+      />
+      <h1 class="title">Hi, I am Dilna</h1>
+      <p class="subtitle">Full Stack Developer</p>
+    </header>
+
+    <!-- Content grid -->
+    <main class="wrap" role="main">
+      <!-- About -->
+      <section class="card light about" aria-labelledby="about-title">
+        <h3 id="about-title">Easy Profile</h3>
+        <h4 style="margin: 0.25rem 0 1rem; font-weight: 600; color: #1d2a4d">
+          Carrier Objective
+        </h4>
+        <p class="muted">
+          To work in a firm with a professional work driven environment where i
+          can utilize and apply my knowledge,skills which would enable me to
+          grow while fulfilling organizational goal
+        </p>
+      </section>
+
+      <!-- Skills -->
+      <section class="card dark skills" aria-labelledby="skills-title">
+        <h3 id="skills-title">Skills</h3>
+
+        <div class="skill" aria-label="Python/django70 percent">
+          <label><span>Python/django</span><span>70%</span></label>
+          <div class="bar" style="--w: 70%">
+            <span style="width: 70%"></span>
+          </div>
+        </div>
+
+        <div class="skill" aria-label="Html/Css 85 percent">
+          <label><span>Html/Css </span><span>85%</span></label>
+          <div class="bar" style="--w: 85%">
+            <span style="width: 85%"></span>
+          </div>
+        </div>
+
+        <div class="skill" aria-label="React 95 percent">
+          <label><span>React</span><span>95%</span></label>
+          <div class="bar" style="--w: 95%">
+            <span style="width: 95%"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="card dark education" aria-labelledby="edu-title">
+        <h3 id="edu-title">Education</h3>
+        <h4 style="margin: 4px 0 8px">BCA</h4>
+        <div class="muted">
+         Kannur university 
+          <strong>2011-2014</strong>
+        </div>
+       <h4 style="margin: 4px 0 8px;">PlusTwo</h4>
+       <div>
+        IringannurHigherSecondary School
+        <strong>March 2011</strong>
+       </div
+       h4 style="margin: 4px 0 8px;">SSLC</h4>
+       <div>
+        IringannurHigherSecondary School
+        <strong>March 2009</strong>
+       </div>
+
+       
+      </section>
+
+      <!-- Languages -->
+      <section class="card light languages" aria-labelledby="lang-title">
+        <h3 id="lang-title">Languages</h3>
+        <ul class="clean">
+          <li>Malayalam</li>
+          <li>English</li>
+          <li>Hindi</li>
+        </ul>
+      </section>
+
+      <!-- Contact -->
+      <section class="card light contact" aria-labelledby="contact-title">
+        <h3 id="contact-title">Contact</h3>
+
+        <div class="row">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <div>Vatakara</div>
+        </div>
+
+        <div class="row">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <div><a href="tel:+6602000890">9048807361</a></div>
+        </div>
+
+        <div class="row">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+          <div>
+            <a href="mailto:you@company.com">dilna.riji123@gmail.com</a>
+          </div>
+        </div>
+
+       
+      </section>
+
+      <!-- Experience -->
+      <section class="card dark experience" aria-labelledby="xp-title">
+        <h3 id="xp-title">Experiences</h3>
+
+        <div class="xp-item">
+          <h4>Website Development</h4>
+          <div class="place">PHP</div>
+          <div class="range">2011-2014</div>
+          <p class="muted">
+            Online theatre booking system...
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Copyright © 2084 Your Easy Profile</div>
+      <div class="social">
+        <a href="#" aria-label="Facebook"
+          ><i class="fa-brands fa-facebook-f"></i
+        ></a>
+        <a href="#" aria-label="Twitter"
+          ><i class="fa-brands fa-x-twitter"></i
+        ></a>
+        <a href="#" aria-label="LinkedIn"
+          ><i class="fa-brands fa-linkedin-in"></i
+        ></a>
+        <a href="#" aria-label="Behance"
+          ><i class="fa-brands fa-behance"></i
+        ></a>
+      </div>
+    </footer>
+  </body>
+</html>
